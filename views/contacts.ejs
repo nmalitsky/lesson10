@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Записная книжка</title>
+  <script>
+	function delContact(contact_id) {
+	console.log(`quotes/${contact_id}`)
+	  fetch(`quotes/${contact_id}`, {
+	    method: 'delete',
+	    headers: {
+	      'Content-Type': 'application/json'
+	    }
+	  }).then(function (response) {
+	    window.location.reload()
+	  })		
+	}
+  </script>
+</head>
+<body>
+  Записная книжка
+
+  <ul>
+  <% for(let i = 0; i < contacts.length; i++) {%>
+    <li>
+      <span><%= contacts[i].secondName %></span>
+      <span><%= contacts[i].firstName %></span>
+      <span><%= contacts[i].middleName %></span>
+      <span><%= contacts[i].phone %></span>
+      <span><%= contacts[i]._id %></span>
+<!--
+      <button onclick="delContact('<%= contacts[i].phone %>')">Удалить контакт</button>
+-->
+    </li>
+  <% } %>
+  </ul>
+
+  <p>
+  <form action="/contacts" method="POST">
+    <input type="text" placeholder="Фамилия" name="secondName" required>
+    <input type="text" placeholder="Имя" name="firstName" required>
+    <input type="text" placeholder="Отчество" name="middleName">
+    <input type="tel" placeholder="Телефон" name="phone" required>
+    <button type="submit">Добавить контакт</button>
+  </form>
+  </p>
+
+  <p>
+  <form action="/contacts" method="GET">
+    <input type="text" placeholder="Фамилия" name="secondName">
+    <input type="text" placeholder="Имя" name="firstName">
+    <input type="text" placeholder="Отчество" name="middleName">
+    <input type="tel" placeholder="Телефон" name="phone">
+    <button type="submit">Отобрать контакты</button>
+  </form>
+  </p>
+
+</body>
+</html>

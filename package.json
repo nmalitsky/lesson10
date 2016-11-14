@@ -1,0 +1,31 @@
+{
+  "name": "lesson9",
+  "version": "1.0.0",
+  "description": "ND-2 Lesson 10 (MongoDB Contacts)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmalitsky/lesson10.git"
+  },
+  "keywords": [
+    "mongodb"
+  ],
+  "author": "Nikolay Malitsky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nmalitsky/lesson10/issues"
+  },
+  "homepage": "https://github.com/nmalitsky/lesson10#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.11"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
