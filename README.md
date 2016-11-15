@@ -5,4 +5,5 @@ Run: node index.js
 Support CRUD
 
 Only one phone to person
-Remove and update by id (hidden in UI).
+
+Delete and Update by id (hidden in UI).
