@@ -52,7 +52,6 @@ app.get('/contacts', (req, res) => {
   let contact = new Contact(req.query);
   db.collection('contacts').find(contact.toSearch()).toArray((err, result) => {
     if (err) return console.log(err);
-    // renders contacts.ejs
     res.render('contacts.ejs', {contacts: result});
   })});
 
