@@ -10,11 +10,12 @@
   <ul>
   <% for(let i = 0; i < contacts.length; i++) {%>
     <li>
-      <span><%= contacts[i].secondName %></span>
-      <span><%= contacts[i].firstName %></span>
-      <span><%= contacts[i].middleName %></span>
-      <span><%= contacts[i].phone %></span>
+      <input type="text" placeholder="Фамилия" id="secondName<%= i %>" value="<%= contacts[i].secondName %>">
+      <input type="text" placeholder="Имя" id="firstName<%= i %>" value="<%= contacts[i].firstName %>">
+      <input type="text" placeholder="Отчество" id="middleName<%= i %>" value="<%= contacts[i].middleName %>">
+      <input type="tel" placeholder="Телефон" id="phone<%= i %>" value="<%= contacts[i].phone %>">
       <button onclick="delContact('<%= contacts[i]._id %>')">Удалить контакт</button>
+      <button onclick="putContact('<%= contacts[i]._id %>', <%= i %>)">Сохранить контакт</button>
     </li>
   <% } %>
   </ul>
@@ -40,7 +41,7 @@
   </p>
 
   <script>
-	function delContact(contact_id) {
+	function delContact(contact_id, index) {
 	  fetch('contacts', {
 	    method: 'delete',
 	    headers: {
@@ -55,17 +56,20 @@
 	  })		
 	}
 
-	function putContact(contact_id, secondName, firstName, middleName, phone) {
+	function putContact(contact_id, index) {
 	  fetch('contacts', {
 	    method: 'put',
 	    headers: {
 	      'Content-Type': 'application/json'
 	    },
 	    body: JSON.stringify({
-	      'secondName': secondName,
-	      'firstName': firstName,
-	      'middleName': middleName,
-	      'phone': phone
+	      'contact_id': contact_id,
+	      'contact': {
+	        'secondName': document.getElementById('secondName' + index).value,
+	        'firstName': document.getElementById('firstName' + index).value,
+	        'middleName': document.getElementById('middleName' + index).value,
+	        'phone': document.getElementById('phone' + index).value
+	       }
 	    })
 	  }).then(function (response) {
 	    window.location.reload()
