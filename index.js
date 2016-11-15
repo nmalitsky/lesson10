@@ -48,10 +48,10 @@ app.post('/contacts', (req, res) => {
   })
 });
 
-// Read (all)
+// Read
 app.get('/contacts', (req, res) => {
   let contact = new Contact(req.query);
-  db.collection('contacts').find().toArray((err, result) => {
+  db.collection('contacts').find(contact.toSearch()).toArray((err, result) => {
     if (err) return console.log(err);
     // renders index.ejs
     res.render('contacts.ejs', {contacts: result});
