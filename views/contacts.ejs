@@ -41,30 +41,33 @@
 
   <script>
 	function delContact(contact_id) {
-	  fetch('/contacts', {
-	    alert(contact_id)
+	alert(contact_id)
+	  fetch('contacts', {
 	    method: 'delete',
 	    headers: {
 	      'Content-Type': 'application/json'
 	    },
-	    body: {
-		contact_id: contact_id
-	    }
+	    body: JSON.stringify(
+		{
+     		 'contact_id': contact_id
+	    	})
 	  }).then(function (response) {
 	    window.location.reload()
 	  })		
 	}
 
-	function putContact(contact_id, contact) {
-	  fetch('/contacts', {
+	function putContact(contact_id, secondName, firstName, middleName, phone) {
+	  fetch('contacts', {
 	    method: 'put',
 	    headers: {
 	      'Content-Type': 'application/json'
 	    },
-	    body: {
-		contact_id: contact_id,
-		contact: contact
-	    }
+	    body: JSON.stringify({
+	      'secondName': secondName,
+	      'firstName': firstName,
+	      'middleName': middleName,
+	      'phone': phone
+	    })
 	  }).then(function (response) {
 	    window.location.reload()
 	  })		

@@ -42,7 +42,6 @@ app.post('/contacts', (req, res) => {
   let contact = new Contact(req.body);
   db.collection('contacts').insert(contact, (err, result) => {
     if (err) return console.log(err);
-
     console.log(`contacts saved to database`);
     res.redirect('/contacts');
   })
