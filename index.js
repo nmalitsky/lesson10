@@ -58,9 +58,9 @@ app.get('/contacts', (req, res) => {
   })});
 
 // Update
-app.put('/contacts/:contact_id', (req, res) => {
-  db.collection('quotes').findOneAndUpdate({_id: req.params.contact_id}, {
-    $set: new Contact(req.body)
+app.put('/contacts', (req, res) => {
+  db.collection('contacts').findOneAndUpdate({_id: req.body.contact_id}, {
+    $set: new Contact(req.body.contact)
   }, (err, result) => {
     if (err) return res.send(err);
     res.send(result);
@@ -68,9 +68,9 @@ app.put('/contacts/:contact_id', (req, res) => {
 })
 
 // Delete
-app.delete('/contacts/:contact_id', (req, res) => {
-  db.collection('contacts').findOneAndDelete({_id: req.params.contact_id}, (err, result) => {
-    if (err) return r.send(500, err)
-    res.send('contact deleted')
-  })
+app.delete('/contacts', (req, res) => {
+  db.collection('contacts').findOneAndDelete({_id: req.body.contact_id}, (err, result) => {
+    if (err) return console.log(err);
+    res.send(result);
+  })    
 })

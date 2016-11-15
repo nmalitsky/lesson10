@@ -3,19 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Записная книжка</title>
-  <script>
-	function delContact(contact_id) {
-	console.log(`quotes/${contact_id}`)
-	  fetch(`quotes/${contact_id}`, {
-	    method: 'delete',
-	    headers: {
-	      'Content-Type': 'application/json'
-	    }
-	  }).then(function (response) {
-	    window.location.reload()
-	  })		
-	}
-  </script>
 </head>
 <body>
   Записная книжка
@@ -27,9 +14,7 @@
       <span><%= contacts[i].firstName %></span>
       <span><%= contacts[i].middleName %></span>
       <span><%= contacts[i].phone %></span>
-<!--
-      <button onclick="delContact('<%= contacts[i].phone %>')">Удалить контакт</button>
--->
+      <button onclick="delContact('<%= contacts[i]._id %>')">Удалить контакт</button>
     </li>
   <% } %>
   </ul>
@@ -53,6 +38,39 @@
     <button type="submit">Отобрать контакты</button>
   </form>
   </p>
+
+  <script>
+	function delContact(contact_id) {
+	  fetch('/contacts', {
+	    alert(contact_id)
+	    method: 'delete',
+	    headers: {
+	      'Content-Type': 'application/json'
+	    },
+	    body: {
+		contact_id: contact_id
+	    }
+	  }).then(function (response) {
+	    window.location.reload()
+	  })		
+	}
+
+	function putContact(contact_id, contact) {
+	  fetch('/contacts', {
+	    method: 'put',
+	    headers: {
+	      'Content-Type': 'application/json'
+	    },
+	    body: {
+		contact_id: contact_id,
+		contact: contact
+	    }
+	  }).then(function (response) {
+	    window.location.reload()
+	  })		
+	}
+  </script>
+
 
 </body>
 </html>
